@@ -11,3 +11,6 @@ Thumbs.db
 
 # Node modules (se futuramente usar)
 node_modules/
+
+# Documentos do projeto
+construção_blog.docx

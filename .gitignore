@@ -1,0 +1,13 @@
+# Arquivos temporários do Windows
+Thumbs.db
+~$*
+
+# Pastas de sistema
+.DS_Store
+*.swp
+
+# Arquivos do docx extraídos (se houver)
+/tmp/
+
+# Node modules (se futuramente usar)
+node_modules/

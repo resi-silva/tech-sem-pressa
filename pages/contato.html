@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Entre em contato com a Lu - Tech Sem Pressa. Envie sua mensagem, dúvida ou sugestão.">
+  <title>Contato | Tech Sem Pressa</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <a href="../index.html" class="logo">Tech Sem <span>Pressa</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-menu" id="navMenu">
+        <a href="../index.html">Home</a>
+        <a href="comece-aqui.html">Comece Aqui</a>
+        <a href="sobre-mim.html">Sobre Mim</a>
+        <a href="tecnologia-descomplicada.html">Tecnologia</a>
+        <a href="inteligencia-artificial-na-pratica.html">IA na Prática</a>
+        <a href="recomecar-aos-40.html">40+</a>
+        <a href="diario-de-bordo.html">Diário de Bordo</a>
+        <a href="maternidade-atipica.html">Maternidade Atípica</a>
+        <a href="recursos-gratuitos.html">Recursos Gratuitos</a>
+        <a href="contato.html" class="active">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-header">
+    <div class="container">
+      <h1>📬 Contato</h1>
+      <p>Tem uma dúvida, sugestão ou quer trocar uma ideia? Vou adorar ouvir você!</p>
+    </div>
+  </section>
+
+  <main class="main">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span>/</span>
+        <span>Contato</span>
+      </nav>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;">
+
+        <!-- Formulário -->
+        <div>
+          <form class="contact-form" style="margin:0;">
+            <div class="form-group">
+              <label for="nome">Nome</label>
+              <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="assunto">Assunto</label>
+              <select id="assunto" name="assunto">
+                <option value="">Selecione um assunto</option>
+                <option value="duvida">Dúvida</option>
+                <option value="sugestao">Sugestão</option>
+                <option value="parceria">Parceria</option>
+                <option value="depoimento">Depoimento</option>
+                <option value="outro">Outro</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="mensagem">Mensagem</label>
+              <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem aqui..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%;">Enviar Mensagem ✨</button>
+          </form>
+        </div>
+
+        <!-- Informações de contato -->
+        <div>
+          <div style="background:var(--color-bg-alt);padding:2rem;border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:2rem;">
+            <h3>💬 Outras formas de contato</h3>
+
+            <div style="display:flex;align-items:center;gap:1rem;margin:1.5rem 0;">
+              <span style="font-size:1.5rem;">📧</span>
+              <div>
+                <strong>E-mail</strong>
+                <p style="margin:0;">ola@blogdalu.com.br</p>
+              </div>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:1rem;margin:1.5rem 0;">
+              <span style="font-size:1.5rem;">📱</span>
+              <div>
+                <strong>Redes Sociais</strong>
+                <p style="margin:0;">Me siga nas redes para acompanhar de perto</p>
+              </div>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:1rem;margin:1.5rem 0;">
+              <span style="font-size:1.5rem;">⏰</span>
+              <div>
+                <strong>Tempo de resposta</strong>
+                <p style="margin:0;">Respondo em até 48 horas úteis</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="background:var(--color-bg-alt);padding:2rem;border-radius:var(--radius);box-shadow:var(--shadow);">
+            <h3>🌐 Redes Sociais</h3>
+            <p>Me acompanhe também por aqui:</p>
+            <div style="display:flex;gap:1rem;margin-top:1rem;flex-wrap:wrap;">
+              <a href="#" class="btn btn-secondary" style="font-size:0.85rem;padding:0.5rem 1rem;">📸 Instagram</a>
+              <a href="#" class="btn btn-secondary" style="font-size:0.85rem;padding:0.5rem 1rem;">▶️ YouTube</a>
+              <a href="#" class="btn btn-secondary" style="font-size:0.85rem;padding:0.5rem 1rem;">💼 LinkedIn</a>
+              <a href="#" class="btn btn-secondary" style="font-size:0.85rem;padding:0.5rem 1rem;">📌 Pinterest</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Tech Sem Pressa</h4>
+          <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;">Tecnologia, IA, maternidade atípica e recomeços. Feito com 💜 para quem busca conhecimento e acolhimento.</p>
+        </div>
+        <div>
+          <h4>Navegue</h4>
+          <a href="../index.html">Home</a>
+          <a href="comece-aqui.html">Comece Aqui</a>
+          <a href="sobre-mim.html">Sobre Mim</a>
+          <a href="contato.html">Contato</a>
+        </div>
+        <div>
+          <h4>Categorias</h4>
+          <a href="tecnologia-descomplicada.html">Tecnologia Descomplicada</a>
+          <a href="inteligencia-artificial-na-pratica.html">IA na Prática</a>
+          <a href="recomecar-aos-40.html">Recomeçar aos 40+</a>
+          <a href="maternidade-atipica.html">Maternidade Atípica</a>
+        </div>
+        <div>
+          <h4>Redes Sociais</h4>
+          <a href="#">Instagram</a>
+          <a href="#">YouTube</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Pinterest</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Tech Sem Pressa. Todos os direitos reservados. Feito com 💚 e ☕.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

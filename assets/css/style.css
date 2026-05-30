@@ -66,6 +66,18 @@ ul, ol {
   list-style: none;
 }
 
+.main ul, .main ol,
+article ul, article ol {
+  list-style: disc;
+  padding-left: 1.5rem;
+}
+
+.main ul ul, .main ol ol,
+article ul ul, article ol ol {
+  list-style: circle;
+  padding-left: 1.5rem;
+}
+
 .container {
   width: 100%;
   max-width: var(--max-width);

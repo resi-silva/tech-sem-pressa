@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planner Semanal | Mães Atípicas</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #f5f3f0;
+      color: #2d2a24;
+      padding: 2rem 1rem;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #4a6b4a;
+      margin-bottom: 0.25rem;
+    }
+    .header p { color: #7a7a7a; font-size: 0.95rem; }
+    .week-input {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .week-input label { font-weight: 600; font-size: 0.9rem; }
+    .week-input input {
+      padding: 0.5rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.9rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 768px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+    }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 1.25rem;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+      break-inside: avoid;
+    }
+    .card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: #4a6b4a;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #e8e4de;
+    }
+    .card textarea {
+      width: 100%;
+      min-height: 80px;
+      border: 1px solid #e8e4de;
+      border-radius: 6px;
+      padding: 0.75rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      resize: vertical;
+      background: #fafaf8;
+    }
+    .card textarea:focus {
+      outline: none;
+      border-color: #7d9b7a;
+      background: #fff;
+    }
+    .day-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    @media (min-width: 600px) {
+      .day-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .day-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    }
+    .day-card h3 {
+      font-size: 0.95rem;
+      color: #4a6b4a;
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.3rem;
+      border-bottom: 1px solid #e8e4de;
+    }
+    .day-card textarea {
+      min-height: 120px;
+    }
+    .full-width { grid-column: 1 / -1; }
+    .actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .btn-primary {
+      background: #7d9b7a;
+      color: #fff;
+    }
+    .btn-primary:hover { background: #4a6b4a; }
+    .btn-secondary {
+      background: #e8e4de;
+      color: #2d2a24;
+    }
+    .btn-secondary:hover { background: #d6d0c8; }
+    .footer-text {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: #aaa;
+    }
+    @media print {
+      body { background: #fff; padding: 0.5in; }
+      .btn, .week-input, .no-print { display: none !important; }
+      .card, .day-card { box-shadow: none; border: 1px solid #ddd; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Planner Semanal</h1>
+      <p>Para organizar tarefas, metas e o cuidado com sua família atípica</p>
+    </div>
+
+    <div class="week-input no-print">
+      <label for="semana">Semana de:</label>
+      <input type="date" id="semana">
+      <button class="btn btn-primary" onclick="window.print()">Imprimir / Salvar PDF</button>
+      <button class="btn btn-secondary" onclick="limpar()">Limpar tudo</button>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Prioridades da Semana</h2>
+        <textarea placeholder="Ex: agendar consulta com neuropediatra, organizar laudo, comprar medicação..."></textarea>
+      </div>
+      <div class="card">
+        <h2>Autocuidado</h2>
+        <textarea placeholder="Ex: 10 min de silêncio, banho sem pressa, ler um capítulo de livro..."></textarea>
+      </div>
+      <div class="card">
+        <h2>Refeições</h2>
+        <textarea placeholder="Planejar o cardápio da semana para facilitar o dia a dia"></textarea>
+      </div>
+      <div class="card">
+        <h2>Observações</h2>
+        <textarea placeholder="Anotações importantes, lembretes médicos, mudanças de comportamento observadas..."></textarea>
+      </div>
+    </div>
+
+    <h2 style="font-family:'Playfair Display',serif;color:#4a6b4a;margin:2rem 0 1rem;">Rotina Diária</h2>
+
+    <div class="day-grid">
+      <div class="day-card">
+        <h3>Segunda-feira</h3>
+        <textarea placeholder="Tarefas, terapias, consultas..."></textarea>
+      </div>
+      <div class="day-card">
+        <h3>Terça-feira</h3>
+        <textarea placeholder="Tarefas, terapias, consultas..."></textarea>
+      </div>
+      <div class="day-card">
+        <h3>Quarta-feira</h3>
+        <textarea placeholder="Tarefas, terapias, consultas..."></textarea>
+      </div>
+      <div class="day-card">
+        <h3>Quinta-feira</h3>
+        <textarea placeholder="Tarefas, terapias, consultas..."></textarea>
+      </div>
+      <div class="day-card">
+        <h3>Sexta-feira</h3>
+        <textarea placeholder="Tarefas, terapias, consultas..."></textarea>
+      </div>
+      <div class="day-card">
+        <h3>Sábado</h3>
+        <textarea placeholder="Atividades em família, descanso..."></textarea>
+      </div>
+      <div class="day-card">
+        <h3>Domingo</h3>
+        <textarea placeholder="Descanso, lazer, recarga..."></textarea>
+      </div>
+      <div class="day-card">
+        <h3>Pausas Sensoriais</h3>
+        <textarea placeholder="Registre os momentos de pausa sensorial que funcionaram melhor para você e seu filho(a)"></textarea>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card full-width">
+        <h2>Metas da Semana</h2>
+        <textarea placeholder="O que você deseja realizar esta semana? (ex: organizar documentos, iniciar uma terapia nova, descansar 2 horas sem culpa...)" style="min-height:100px;"></textarea>
+      </div>
+      <div class="card full-width">
+        <h2>Contatos e Telefones Úteis</h2>
+        <textarea placeholder="Pediatra: 
+Neuro:
+Fono:
+TO:
+Escola:
+CRAS:
+Plano de Saúde:"></textarea>
+      </div>
+    </div>
+
+    <div class="actions no-print">
+      <button class="btn btn-primary" onclick="window.print()">Imprimir / Salvar PDF</button>
+      <button class="btn btn-secondary" onclick="limpar()">Limpar tudo</button>
+    </div>
+
+    <p class="footer-text">Tech Sem Pressa — Planejamento semanal para mães atípicas. Use e reuse quantas vezes precisar.</p>
+  </div>
+
+  <script>
+    function limpar() {
+      if (confirm('Tem certeza que deseja limpar todos os campos?')) {
+        document.querySelectorAll('textarea').forEach(t => t.value = '');
+      }
+    }
+    document.getElementById('semana').valueAsDate = new Date();
+  </script>
+</body>
+</html>

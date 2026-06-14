@@ -77,6 +77,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* --- Accordion --- */
+  document.querySelectorAll('.accordion-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const body = header.nextElementSibling;
+      const isOpen = body.classList.contains('open');
+
+      document.querySelectorAll('.accordion-body.open').forEach(openBody => {
+        if (openBody !== body) {
+          openBody.classList.remove('open');
+          openBody.previousElementSibling.classList.remove('active');
+        }
+      });
+
+      body.classList.toggle('open');
+      header.classList.toggle('active');
+    });
+  });
+
   /* --- Animação de scroll (Intersection Observer) --- */
   const animateElements = document.querySelectorAll('.card, .post-item, .category-card, .resource-item');
 

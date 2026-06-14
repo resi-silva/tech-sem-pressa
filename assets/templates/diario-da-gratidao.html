@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diário da Gratidão | Tech Sem Pressa</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET ===== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --cor-verde: #7d9b7a;
+      --cor-verde-claro: #a8c3a6;
+      --cor-verde-escuro: #5a7a57;
+      --cor-lavanda: #d4c9e0;
+      --cor-bege: #c9b38b;
+      --cor-fundo: #f7f5f2;
+      --cor-branco: #ffffff;
+      --cor-texto: #3a3a3a;
+      --cor-texto-claro: #7a7a7a;
+      --cor-borda: #e8e4de;
+      --fonte-titulo: 'Playfair Display', Georgia, serif;
+      --fonte-corpo: 'Inter', system-ui, sans-serif;
+      --fonte-manuscrita: 'Dancing Script', cursive;
+    }
+
+    body {
+      font-family: var(--fonte-corpo);
+      color: var(--cor-texto);
+      background: var(--cor-fundo);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ===== TOPO ===== */
+    .topo-bar {
+      background: var(--cor-verde-escuro);
+      color: #fff;
+      text-align: center;
+      padding: 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .topo-bar a {
+      color: var(--cor-lavanda);
+      text-decoration: none;
+    }
+
+    .topo-bar a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== CAPA ===== */
+    .capa {
+      background: linear-gradient(135deg, var(--cor-verde-escuro) 0%, var(--cor-verde) 50%, var(--cor-lavanda) 100%);
+      color: #fff;
+      text-align: center;
+      padding: 5rem 2rem 4rem;
+      border-radius: 0 0 40px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .capa::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      left: -30%;
+      width: 160%;
+      height: 160%;
+      background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.06) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 60%, rgba(212,201,224,0.1) 0%, transparent 50%);
+    }
+
+    .capa-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .capa h1 {
+      font-family: var(--fonte-titulo);
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+
+    .capa p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.9);
+      max-width: 500px;
+      margin: 0 auto;
+      position: relative;
+      font-weight: 300;
+    }
+
+    .capa .frase {
+      font-family: var(--fonte-manuscrita);
+      font-size: 1.4rem;
+      color: rgba(255,255,255,0.85);
+      margin-top: 1.5rem;
+      position: relative;
+    }
+
+    .capa .instrucao {
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      background: rgba(255,255,255,0.12);
+      border-radius: 12px;
+      display: inline-block;
+      font-size: 0.9rem;
+      position: relative;
+      backdrop-filter: blur(4px);
+    }
+
+    .capa .instrucao strong {
+      color: #fff;
+    }
+
+    /* ===== SEÇÃO INFO ===== */
+    .info-section {
+      text-align: center;
+      padding: 3rem 0 2rem;
+    }
+
+    .info-section h2 {
+      font-family: var(--fonte-titulo);
+      font-size: 1.6rem;
+      color: var(--cor-verde-escuro);
+      margin-bottom: 1rem;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .info-card {
+      background: var(--cor-branco);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+
+    .info-card .icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .info-card h4 {
+      font-family: var(--fonte-titulo);
+      font-size: 1rem;
+      color: var(--cor-verde-escuro);
+      margin-bottom: 0.3rem;
+    }
+
+    .info-card p {
+      font-size: 0.85rem;
+      color: var(--cor-texto-claro);
+    }
+
+    /* ===== PÁGINAS DO DIÁRIO ===== */
+    .paginas {
+      padding: 1rem 0 3rem;
+    }
+
+    .pagina {
+      background: var(--cor-branco);
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      border: 1px solid var(--cor-borda);
+    }
+
+    .pagina-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px dashed var(--cor-borda);
+    }
+
+    .pagina-data {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .pagina-data .dia-semana {
+      font-family: var(--fonte-titulo);
+      font-size: 1.1rem;
+      color: var(--cor-verde-escuro);
+      font-weight: 600;
+    }
+
+    .pagina-data input {
+      border: none;
+      border-bottom: 1px dashed var(--cor-borda);
+      font-family: var(--fonte-corpo);
+      font-size: 0.95rem;
+      color: var(--cor-texto);
+      background: transparent;
+      padding: 0.25rem 0.5rem;
+      width: 160px;
+      transition: border-color 0.2s;
+    }
+
+    .pagina-data input:focus {
+      outline: none;
+      border-bottom-color: var(--cor-verde);
+    }
+
+    .pagina-numero {
+      font-family: var(--fonte-titulo);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--cor-verde-claro);
+      opacity: 0.5;
+    }
+
+    /* ===== PROMPTS ===== */
+    .prompt {
+      margin-bottom: 1.5rem;
+    }
+
+    .prompt-label {
+      font-family: var(--fonte-titulo);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--cor-verde-escuro);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .prompt-label .emoji {
+      font-size: 1.2rem;
+    }
+
+    .prompt textarea,
+    .prompt .linha {
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid var(--cor-borda);
+      font-family: var(--fonte-corpo);
+      font-size: 0.95rem;
+      color: var(--cor-texto);
+      background: transparent;
+      padding: 0.5rem 0.25rem;
+      resize: vertical;
+      min-height: 2rem;
+      transition: border-color 0.2s;
+    }
+
+    .prompt textarea:focus {
+      outline: none;
+      border-bottom-color: var(--cor-verde);
+    }
+
+    .prompt textarea::placeholder {
+      color: #bbb;
+      font-style: italic;
+    }
+
+    .prompt-linhas {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .prompt-linhas .linha {
+      min-height: 1.8rem;
+    }
+
+    /* ===== SEÇÃO EXTRA ===== */
+    .extra-section {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 2px dashed var(--cor-borda);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .extra-item label {
+      display: block;
+      font-family: var(--fonte-titulo);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--cor-verde-escuro);
+      margin-bottom: 0.4rem;
+    }
+
+    .extra-item textarea {
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid var(--cor-borda);
+      font-family: var(--fonte-corpo);
+      font-size: 0.88rem;
+      color: var(--cor-texto);
+      background: transparent;
+      padding: 0.4rem 0.25rem;
+      resize: vertical;
+      min-height: 1.5rem;
+    }
+
+    .extra-item textarea:focus {
+      outline: none;
+      border-bottom-color: var(--cor-verde);
+    }
+
+    /* ===== SEÇÃO MENSAL ===== */
+    .mensal-section {
+      background: linear-gradient(135deg, #f0ebe0 0%, #f7f5f2 100%);
+      border-radius: 20px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      border: 1px solid var(--cor-borda);
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .mensal-section h3 {
+      font-family: var(--fonte-titulo);
+      font-size: 1.5rem;
+      color: var(--cor-verde-escuro);
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .mensal-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .mensal-item {
+      background: var(--cor-branco);
+      border-radius: 12px;
+      padding: 1.25rem;
+    }
+
+    .mensal-item label {
+      display: block;
+      font-family: var(--fonte-titulo);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--cor-verde-escuro);
+      margin-bottom: 0.5rem;
+    }
+
+    .mensal-item textarea {
+      width: 100%;
+      border: none;
+      border-bottom: 1px dashed var(--cor-borda);
+      font-family: var(--fonte-corpo);
+      font-size: 0.9rem;
+      color: var(--cor-texto);
+      background: transparent;
+      padding: 0.3rem 0;
+      resize: vertical;
+      min-height: 1.2rem;
+    }
+
+    .mensal-item textarea:focus {
+      outline: none;
+      border-bottom-color: var(--cor-verde);
+    }
+
+    /* ===== BOTÃO DE IMPRESSÃO ===== */
+    .print-btn-wrapper {
+      text-align: center;
+      padding: 1rem 0 3rem;
+    }
+
+    .print-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2.5rem;
+      background: var(--cor-verde);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-family: var(--fonte-corpo);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(125,155,122,0.3);
+    }
+
+    .print-btn:hover {
+      background: var(--cor-verde-escuro);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(125,155,122,0.4);
+    }
+
+    .print-btn .icon {
+      font-size: 1.3rem;
+    }
+
+    /* ===== RODAPÉ ===== */
+    .footer-template {
+      text-align: center;
+      padding: 2rem 0;
+      color: var(--cor-texto-claro);
+      font-size: 0.85rem;
+    }
+
+    .footer-template a {
+      color: var(--cor-verde);
+      text-decoration: none;
+    }
+
+    .footer-template a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== @MEDIA PRINT ===== */
+    @media print {
+      body {
+        background: #fff;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .topo-bar,
+      .print-btn-wrapper,
+      .footer-template {
+        display: none !important;
+      }
+
+      .capa {
+        border-radius: 0;
+        padding: 3rem 2rem;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .pagina {
+        box-shadow: none;
+        border: 1px solid #ddd;
+        border-radius: 0;
+        padding: 2rem;
+        margin-bottom: 1.5rem;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      .pagina-data input {
+        border-bottom: 1px solid #999;
+      }
+
+      .prompt textarea,
+      .prompt .linha,
+      .extra-item textarea,
+      .mensal-item textarea {
+        border-bottom: 1px solid #ccc;
+        min-height: 1.5rem;
+      }
+
+      .mensal-section {
+        border-radius: 0;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .info-section {
+        display: none;
+      }
+
+      /* Garantir que cada página quebre corretamente */
+      .page-break {
+        page-break-before: always;
+        break-before: page;
+      }
+    }
+
+    /* ===== RESPONSIVO ===== */
+    @media (max-width: 600px) {
+      .capa h1 { font-size: 2rem; }
+      .capa { padding: 3rem 1.5rem 2.5rem; }
+
+      .pagina { padding: 1.5rem; }
+
+      .pagina-header { flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+
+      .pagina-data { flex-direction: column; align-items: flex-start; width: 100%; }
+      .pagina-data input { width: 100%; }
+
+      .extra-section { grid-template-columns: 1fr; }
+
+      .mensal-grid { grid-template-columns: 1fr; }
+
+      .info-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== BARRA SUPERIOR ===== -->
+  <div class="topo-bar">
+    🌿 <a href="../index.html">Tech Sem Pressa</a> — Diário da Gratidão
+  </div>
+
+  <!-- ===== CAPA ===== -->
+  <div class="capa">
+    <div class="capa-icon">🙏</div>
+    <h1>Diário da Gratidão</h1>
+    <p>Um espaço para registrar pequenas alegrias, aprendizados e momentos que aquecem o coração.</p>
+    <div class="frase">"A gratidão transforma o que temos em suficiente."</div>
+    <div class="instrucao">
+      <strong>Como usar:</strong> Preencha uma página por dia.<br>
+      Ao final de cada semana, releia o que escreveu. ✨
+    </div>
+  </div>
+
+  <!-- ===== INFO ===== -->
+  <div class="container">
+    <div class="info-section">
+      <h2>🌱 Por que praticar a gratidão?</h2>
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="icon">🧠</div>
+          <h4>Saúde Mental</h4>
+          <p>Reduz estresse e ansiedade, promovendo mais bem-estar emocional.</p>
+        </div>
+        <div class="info-card">
+          <div class="icon">💤</div>
+          <h4>Sono Melhor</h4>
+          <p>Escrever sobre gratidão antes de dormir melhora a qualidade do sono.</p>
+        </div>
+        <div class="info-card">
+          <div class="icon">💪</div>
+          <h4>Resiliência</h4>
+          <p>Ajuda a enxergar o lado positivo mesmo em dias difíceis.</p>
+        </div>
+        <div class="info-card">
+          <div class="icon">❤️</div>
+          <h4>Autoconhecimento</h4>
+          <p>Fortalece a conexão com você mesma e com o que realmente importa.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PÁGINAS DO DIÁRIO ===== -->
+  <div class="container paginas">
+
+    <!-- Página 1 -->
+    <div class="pagina">
+      <div class="pagina-header">
+        <div class="pagina-data">
+          <span class="dia-semana">📅</span>
+          <input type="text" placeholder="Dia da semana, ___ de _________ de 2026">
+        </div>
+        <div class="pagina-numero">#01</div>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-label"><span class="emoji">🌅</span> Hoje eu sou grata por...</div>
+        <div class="prompt-linhas">
+          <textarea rows="1" placeholder="Escreva aqui..."></textarea>
+          <textarea rows="1" placeholder=""></textarea>
+          <textarea rows="1" placeholder=""></textarea>
+        </div>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-label"><span class="emoji">😊</span> Um momento que me fez sorrir hoje</div>
+        <textarea rows="2" placeholder="O que aconteceu? Quem estava envolvido? Como me senti?"></textarea>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-label"><span class="emoji">💪</span> Um desafio que enfrentei com coragem</div>
+        <textarea rows="2" placeholder="Mesmo que pequeno, reconheça sua força."></textarea>
+      </div>
+
+      <div class="extra-section">
+        <div class="extra-item">
+          <label>🎵 Música / Som que marcou o dia</label>
+          <textarea rows="1" placeholder=""></textarea>
+        </div>
+        <div class="extra-item">
+          <label>🌿 Uma coisa que quero levar para amanhã</label>
+          <textarea rows="1" placeholder=""></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Página 2 -->
+    <div class="pagina">
+      <div class="pagina-header">
+        <div class="pagina-data">
+          <span class="dia-semana">📅</span>
+          <input type="text" placeholder="Dia da semana, ___ de _________ de 2026">
+        </div>
+        <div class="pagina-numero">#02</div>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-label"><span class="emoji">🌅</span> Hoje eu sou grata por...</div>
+        <div class="prompt-linhas">
+          <textarea rows="1" placeholder="Escreva aqui..."></textarea>
+          <textarea rows="1" placeholder=""></textarea>
+          <textarea rows="1" placeholder=""></textarea>
+        </div>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-label"><span class="emoji">🤗</span> Alguém que fez diferença no meu dia</div>
+        <textarea rows="2" placeholder="Quem foi? O que essa pessoa fez? Como posso retribuir?"></textarea>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-label"><span class="emoji">🌟</span> Uma qualidade minha que se destacou hoje</div>
+        <textarea rows="2" placeholder="Reconheça suas próprias qualidades!"></textarea>
+      </div>
+
+      <div class="extra-section">
+        <div class="extra-item">
+          <label>📖 Algo que aprendi hoje</label>
+          <textarea rows="1" placeholder=""></textarea>
+        </div>
+        <div class="extra-item">
+          <label>🎯 Uma intenção para amanhã</label>
+          <textarea rows="1" placeholder=""></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Página 3 -->
+    <div class="pagina">
+      <div class="pagina-header">
+        <div class="pagina-data">
+          <span class="dia-semana">📅</span>
+          <input type="text" placeholder="Dia da semana, ___ de _________ de 2026">
+        </div>
+        <div class="pagina-numero">#03</div>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-label"><span class="emoji">🌅</span> Hoje eu sou grata por...</div>
+        <div class="prompt-linhas">
+          <textarea rows="1" placeholder="Escreva aqui..."></textarea>
+          <textarea rows="1" placeholder=""></textarea>
+          <textarea rows="1" placeholder=""></textarea>
+        </div>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-label"><span class="emoji">☀️</span> Uma coisa simples que trouxe alegria hoje</div>
+        <textarea rows="2" placeholder="Um café quentinho, o sol na janela, um abraço inesperado..."></textarea>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-label"><span class="emoji">💭</span> Um pensamento positivo que quero guardar</div>
+        <textarea rows="2" placeholder="Escreva uma frase, um mantra ou uma reflexão do dia."></textarea>
+      </div>
+
+      <div class="extra-section">
+        <div class="extra-item">
+          <label>🌙 Como estou me sentindo agora</label>
+          <textarea rows="1" placeholder=""></textarea>
+        </div>
+        <div class="extra-item">
+          <label>✨ Um desejo para os próximos dias</label>
+          <textarea rows="1" placeholder=""></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Página 4 -->
+    <div class="pagina">
+      <div class="pagina-header">
+        <div class="pagina-data">
+          <span class="dia-semana">📅</span>
+          <input type="text" placeholder="Dia da semana, ___ de _________ de 2026">
+        </div>
+        <div class="pagina-numero">#04</div>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-label"><span class="emoji">🌅</span> Hoje eu sou grata por...</div>
+        <div class="prompt-linhas">
+          <textarea rows="1" placeholder="Escreva aqui..."></textarea>
+          <textarea rows="1" placeholder=""></textarea>
+          <textarea rows="1" placeholder=""></textarea>
+        </div>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-label"><span class="emoji">🏡</span> Algo no meu lar / família que me trouxe conforto</div>
+        <textarea rows="2" placeholder="Um gesto, uma conversa, um momento de paz..."></textarea>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-label"><span class="emoji">🌈</span> Algo bonito que vi ou senti hoje</div>
+        <textarea rows="2" placeholder="Um pôr do sol, uma flor, uma música, um cheiro..."></textarea>
+      </div>
+
+      <div class="extra-section">
+        <div class="extra-item">
+          <label>🙏 Pelo que mais quero agradecer hoje</label>
+          <textarea rows="1" placeholder=""></textarea>
+        </div>
+        <div class="extra-item">
+          <label>📝 Uma frase que me inspirou</label>
+          <textarea rows="1" placeholder=""></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Página 5 -->
+    <div class="pagina">
+      <div class="pagina-header">
+        <div class="pagina-data">
+          <span class="dia-semana">📅</span>
+          <input type="text" placeholder="Dia da semana, ___ de _________ de 2026">
+        </div>
+        <div class="pagina-numero">#05</div>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-label"><span class="emoji">🌅</span> Hoje eu sou grata por...</div>
+        <div class="prompt-linhas">
+          <textarea rows="1" placeholder="Escreva aqui..."></textarea>
+          <textarea rows="1" placeholder=""></textarea>
+          <textarea rows="1" placeholder=""></textarea>
+        </div>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-label"><span class="emoji">🌿</span> Algo que fiz por mim hoje (autocuidado)</div>
+        <textarea rows="2" placeholder="Um descanso, uma comida gostosa, um momento de silêncio..."></textarea>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-label"><span class="emoji">🤝</span> Uma conexão significativa que tive hoje</div>
+        <textarea rows="2" placeholder="Com quem conversei? O que compartilhamos?"></textarea>
+      </div>
+
+      <div class="extra-section">
+        <div class="extra-item">
+          <label>🔋 O que me deu energia hoje</label>
+          <textarea rows="1" placeholder=""></textarea>
+        </div>
+        <div class="extra-item">
+          <label>🌙 O que vou deixar ir antes de dormir</label>
+          <textarea rows="1" placeholder=""></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Página 6 -->
+    <div class="pagina">
+      <div class="pagina-header">
+        <div class="pagina-data">
+          <span class="dia-semana">📅</span>
+          <input type="text" placeholder="Dia da semana, ___ de _________ de 2026">
+        </div>
+        <div class="pagina-numero">#06</div>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-label"><span class="emoji">🌅</span> Hoje eu sou grata por...</div>
+        <div class="prompt-linhas">
+          <textarea rows="1" placeholder="Escreva aqui..."></textarea>
+          <textarea rows="1" placeholder=""></textarea>
+          <textarea rows="1" placeholder=""></textarea>
+        </div>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-label"><span class="emoji">📚</span> Algo novo que aprendi ou descobri</div>
+        <textarea rows="2" placeholder="Uma curiosidade, uma habilidade, uma informação..."></textarea>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-label"><span class="emoji">💕</span> Uma forma de amor que recebi ou ofereci</div>
+        <textarea rows="2" placeholder="Amor não precisa ser romântico — pode ser um gesto, uma escuta, um cuidado."></textarea>
+      </div>
+
+      <div class="extra-section">
+        <div class="extra-item">
+          <label>🗣️ Uma palavra que marcou meu dia</label>
+          <textarea rows="1" placeholder=""></textarea>
+        </div>
+        <div class="extra-item">
+          <label>🎯 Meu foco para amanhã</label>
+          <textarea rows="1" placeholder=""></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Página 7 -->
+    <div class="pagina">
+      <div class="pagina-header">
+        <div class="pagina-data">
+          <span class="dia-semana">📅</span>
+          <input type="text" placeholder="Dia da semana, ___ de _________ de 2026">
+        </div>
+        <div class="pagina-numero">#07</div>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-label"><span class="emoji">🌅</span> Hoje eu sou grata por...</div>
+        <div class="prompt-linhas">
+          <textarea rows="1" placeholder="Escreva aqui..."></textarea>
+          <textarea rows="1" placeholder=""></textarea>
+          <textarea rows="1" placeholder=""></textarea>
+        </div>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-label"><span class="emoji">🏆</span> Uma vitória (grande ou pequena) desta semana</div>
+        <textarea rows="2" placeholder="O que conquistei? Como me sinto com isso?"></textarea>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-label"><span class="emoji">✨</span> Uma bênção inesperada que recebi</div>
+        <textarea rows="2" placeholder="Algo que veio sem esperar e fez diferença."></textarea>
+      </div>
+
+      <div class="extra-section">
+        <div class="extra-item">
+          <label>🌿 Como quero lembrar desta semana</label>
+          <textarea rows="1" placeholder=""></textarea>
+        </div>
+        <div class="extra-item">
+          <label>💌 Um recado para mim mesma</label>
+          <textarea rows="1" placeholder=""></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== PÁGINA DE REVISÃO SEMANAL ===== -->
+    <div class="page-break"></div>
+
+    <div class="mensal-section">
+      <h3>🌟 Revisão da Semana</h3>
+      <p style="text-align:center;color:var(--cor-texto-claro);margin-bottom:1.5rem;font-size:0.9rem;">
+        Ao final de cada semana, reserve um momento para reler suas páginas e refletir.
+      </p>
+      <div class="mensal-grid">
+        <div class="mensal-item">
+          <label>📌 O momento mais especial da semana</label>
+          <textarea rows="2" placeholder=""></textarea>
+        </div>
+        <div class="mensal-item">
+          <label>💪 O maior desafio que superei</label>
+          <textarea rows="2" placeholder=""></textarea>
+        </div>
+        <div class="mensal-item">
+          <label>🌱 O que aprendi sobre mim esta semana</label>
+          <textarea rows="2" placeholder=""></textarea>
+        </div>
+        <div class="mensal-item">
+          <label>🎯 Uma intenção para a próxima semana</label>
+          <textarea rows="2" placeholder=""></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Páginas extras em branco (cópia das primeiras para continuar) -->
+    <div class="page-break"></div>
+
+    <div class="pagina" style="border: 2px dashed var(--cor-borda);">
+      <div class="pagina-header" style="border-bottom-color: var(--cor-borda);">
+        <div class="pagina-data">
+          <span class="dia-semana">📅</span>
+          <input type="text" placeholder="Dia da semana, ___ de _________ de 2026">
+        </div>
+        <div class="pagina-numero" style="opacity:0.3;">#__</div>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-label"><span class="emoji">🌅</span> Hoje eu sou grata por...</div>
+        <div class="prompt-linhas">
+          <textarea rows="1" placeholder=""></textarea>
+          <textarea rows="1" placeholder=""></textarea>
+          <textarea rows="1" placeholder=""></textarea>
+        </div>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-label"><span class="emoji">😊</span> Um momento especial de hoje</div>
+        <textarea rows="2" placeholder=""></textarea>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-label"><span class="emoji">💪</span> Um desafio que enfrentei</div>
+        <textarea rows="2" placeholder=""></textarea>
+      </div>
+
+      <div class="extra-section">
+        <div class="extra-item">
+          <label>🎵 Música / Som do dia</label>
+          <textarea rows="1" placeholder=""></textarea>
+        </div>
+        <div class="extra-item">
+          <label>🌿 Para levar adiante</label>
+          <textarea rows="1" placeholder=""></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mais uma página extra em branco -->
+    <div class="pagina" style="border: 2px dashed var(--cor-borda);">
+      <div class="pagina-header" style="border-bottom-color: var(--cor-borda);">
+        <div class="pagina-data">
+          <span class="dia-semana">📅</span>
+          <input type="text" placeholder="Dia da semana, ___ de _________ de 2026">
+        </div>
+        <div class="pagina-numero" style="opacity:0.3;">#__</div>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-label"><span class="emoji">🌅</span> Hoje eu sou grata por...</div>
+        <div class="prompt-linhas">
+          <textarea rows="1" placeholder=""></textarea>
+          <textarea rows="1" placeholder=""></textarea>
+          <textarea rows="1" placeholder=""></textarea>
+        </div>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-label"><span class="emoji">🤗</span> Alguém que fez diferença hoje</div>
+        <textarea rows="2" placeholder=""></textarea>
+      </div>
+
+      <div class="prompt">
+        <div class="prompt-label"><span class="emoji">🌟</span> Uma qualidade minha que brilhou</div>
+        <textarea rows="2" placeholder=""></textarea>
+      </div>
+
+      <div class="extra-section">
+        <div class="extra-item">
+          <label>📖 Algo que aprendi</label>
+          <textarea rows="1" placeholder=""></textarea>
+        </div>
+        <div class="extra-item">
+          <label>🎯 Intenção para amanhã</label>
+          <textarea rows="1" placeholder=""></textarea>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== BOTÃO IMPRIMIR ===== -->
+  <div class="container">
+    <div class="print-btn-wrapper">
+      <button class="print-btn" onclick="window.print()">
+        <span class="icon">🖨️</span>
+        Imprimir ou Salvar como PDF
+      </button>
+      <p style="margin-top:1rem;font-size:0.85rem;color:var(--cor-texto-claro);">
+        💡 No computador, use <strong>Ctrl+P</strong> e escolha "Salvar como PDF".
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== RODAPÉ ===== -->
+  <div class="footer-template">
+    <p>
+      🌿 <a href="../index.html">Tech Sem Pressa</a> — Feito com 💚 para quem busca conhecimento e acolhimento.<br>
+      Compartilhe, imprima, use à vontade. Este template é gratuito e livre.
+    </p>
+  </div>
+
+</body>
+</html>

@@ -16,10 +16,7 @@
 Aqui você encontra conteúdos sobre:
 
 - **Tecnologia Descomplicada** — Conceitos técnicos explicados em linguagem simples
-- **IA na Prática** — Ferramentas de inteligência artificial para o dia a dia
-- **Recomeçar aos 40+** — Inspiração e coragem para novas jornadas
 - **Diário de Bordo** — Reflexões pessoais e aprendizados
-- **Maternidade Atípica** — Vivências, acolhimento e informação
 - **Recursos Gratuitos** — Materiais e ferramentas para ajudar você
 
 ## Identidade Visual
@@ -53,10 +50,7 @@ tech-sem-pressa/
 │   ├── comece-aqui.html
 │   ├── sobre-mim.html
 │   ├── tecnologia-descomplicada.html
-│   ├── inteligencia-artificial-na-pratica.html
-│   ├── recomecar-aos-40.html
 │   ├── diario-de-bordo.html
-│   ├── maternidade-atipica.html
 │   ├── recursos-gratuitos.html
 │   └── contato.html
 └── README.md
